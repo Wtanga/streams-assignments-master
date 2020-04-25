@@ -37,7 +37,10 @@ class Task1_Basic {
      *    - Stream::count()
      */
     static long countLowercaseLetters(String str) {
-        return str.chars().mapToObj(Character::isLowerCase).count();
+        return str.chars()
+                .mapToObj(Character::isLowerCase)
+                .filter(c -> c.equals(true))
+                .count();
     }
 
 
@@ -57,6 +60,9 @@ class Task1_Basic {
      *    - Collectors.joining()
      */
     static String replaceWordsOnLength(String str) {
-        return (String) Arrays.stream(str.split(" +")).map(String::length).collect(Collectors.joining());
+        return Arrays.stream(str.split(" +"))
+                .map(String::length)
+                .map(len -> Integer.toString(len))
+                .collect(Collectors.joining(" "));
     }
 }
